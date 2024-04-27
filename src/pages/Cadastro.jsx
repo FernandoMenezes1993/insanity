@@ -54,13 +54,15 @@ const Cadastro = () =>{
                         setInputSenha("SenhaInputErro")
                         setInputConfirmarSenha('ConfirmarSenhaInputErro')
                         setTitleModal("ERRO")
-                        setMsgModal("Senha diferente da confirmação!")            
+                        setMsgModal("Senha diferente da confirmação!") 
+                        setSenha("")
+                        setConfirmarSenha("")          
                         handleOpen()
                     }
                 }else{
                     setInputConfirmarSenha('ConfirmarSenhaInputErro')
                     setTitleModal("ERRO")
-                    setMsgModal("Digite a confirmação da senha!")            
+                    setMsgModal("Digite a confirmação!")            
                     handleOpen()
                 }
             }else{
@@ -107,12 +109,12 @@ const Cadastro = () =>{
 
             
 
-            <Modal open={open} onClose={handleClose} className='ModalError'>
+            <Modal open={open} onClose={handleClose} className='ModalError' size="300px">
                 <Modal.Header>
                     <Modal.Title className='ModalTitle'>{titleModal}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className='ModalBody'>
-                    <img src="./img/msg/erro.png" alt="Error" className='ModalBodyImg'/>
+                    <img src="./img/msg/erro.png" alt="Error" className='ModalBodyImg' />
                     <p className='ModalBodyP'>{msgModal}</p>
                 </Modal.Body>            
             </Modal>

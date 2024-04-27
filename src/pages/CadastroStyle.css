@@ -152,10 +152,12 @@ h1{
     border-radius: 10px;
 }
     .ModalBodyP{
-        font-size: 24px;
+        font-size: 18px;
         font-weight: bold;
+        margin-left: 10px;
     }
     .ModalBodyImg{
         margin: 0px;
         padding: 0px;
+        width: 50px;
     }
