@@ -1,0 +1,89 @@
+@font-face {
+    font-family: DOCALLISME;
+    src: url(../../public/Fonts/DOCALLISME\ ON\ STREET.ttf);
+}
+@font-face {
+    font-family: AldotheApache;
+    src: url(../../public/Fonts/AldotheApache.ttf);
+}
+
+.Login{
+    background-image: url("img/insanitLogo.png");
+    background-size: 50%;  /* Ajuste este valor conforme necessário */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow-y: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Fomrs{
+    background-color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vh;
+    height: 100vh;
+    border: black solid 2px;
+    align-items: center;
+    border-radius: 10px;
+}
+    .Titulo{
+        font-family: AldotheApache;
+        color: rgb(255, 255, 255);
+        font-size: 3rem;
+    }
+    .LoginInput{
+        margin-top: 1px;
+        margin-bottom: 10px;
+        font-size: 1rem;
+        padding: 8px;
+        border-radius: 10px;
+        outline: 0;
+        border: black solid 2px;
+    }
+    .ButtonLogar{
+        width: 210px;
+        font-size: 1rem;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        padding: 5px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+        font-weight: bold;
+        border-radius: 10px;
+        background-color: rgb(0, 0, 0);
+        color: white;
+    }
+        .ButtonLogar:hover{
+            background-color: rgb(97, 4, 4);
+            transform: scale(1.05); 
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.336);
+        }
+    .ButtonCadastrar{
+        width: 210px;
+        font-size: 1rem;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        padding: 5px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+        font-weight: bold;
+        border-radius: 10px;
+        background-color: rgb(0, 0, 0);
+        color: white;
+    }
+        .ButtonCadastrar:hover{
+            background-color: rgb(97, 4, 4);
+            transform: scale(1.05); 
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.336);
+        }
+    .RecuperarSenha{
+        text-decoration: none;
+        color: white;
+    }
+        .RecuperarSenha:hover{
+            color:rgb(236, 11, 11);
+        }

@@ -1,0 +1,7 @@
+html, body {
+    overflow-y: hidden; /* Esconde a barra de rolagem vertical */
+    height: 100%;       /* Define a altura para 100% */
+  }
+body{
+    background-color: black;
+}
