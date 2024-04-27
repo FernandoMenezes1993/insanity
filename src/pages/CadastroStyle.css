@@ -8,7 +8,7 @@ body{
     margin: 0;
 }
 .DivCadastro{
-    background-image: url("img/insanitLogo.png");
+    background-image: url("../../public/img/insanitLogo.png");
     background-size: 50%;  /* Ajuste este valor conforme necessário */
     background-position: center;
     background-repeat: no-repeat;
