@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect  } from 'react';
 
 import { Modal } from 'rsuite';
 
 import "./CadastroStyle.css"
 import 'rsuite/dist/rsuite-no-reset.min.css';
+import { arEG } from 'rsuite/esm/locales';
 
 const Cadastro = () =>{
     const navigate = useNavigate();
@@ -32,9 +33,29 @@ const Cadastro = () =>{
     const handleClose = () => setOpen(false);
 
     const [titleModal, setTitleModal] = useState("");
-    const [msgModal, setMsgModal] = useState("")
+    const [msgModal, setMsgModal] = useState("");
 
-    const handleSubmit = (event) => {
+    /*Chamando api com nome dos membros da guilda*/
+    const [membrosGuilda, setMembrosGuilda] = useState([]);
+
+    const getMembrosGuilda = async()=>{
+        try {
+            const res = await fetch(`https://backend-insanity.onrender.com/api/playresGuild`);
+            if(!res.ok){
+                throw new Error(`Erro na consulta da API playresGuild`);
+            }
+            const data = await res.json();
+            setMembrosGuilda(data);
+        } catch (error) {
+            
+        }
+    };
+
+    useEffect(()=>{
+        getMembrosGuilda()
+    }, []);
+
+    const registerUser = async (event) => {
         event.preventDefault();
         /*Verificar se o nickname foi digitado*/
         if(nickname){
@@ -44,12 +65,13 @@ const Cadastro = () =>{
                 if(confirmarSenha){  
                     setInputConfirmarSenha ("CadastroInput")                 
                     if(senha == confirmarSenha){                        
-                        setInputConfirmarSenha ("CadastroInput")
-                        setInputSenha("CadastroInput")
+                        setInputConfirmarSenha ("CadastroInput");
+                        setInputSenha("CadastroInput");
+
                         /* AQUI IREMOS FAZER O CADASTRO DO CLIENTE */
 
-
-
+                        console.log(membrosGuilda);
+                        
                     }else{
                         setInputSenha("SenhaInputErro")
                         setInputConfirmarSenha('ConfirmarSenhaInputErro')
@@ -102,7 +124,7 @@ const Cadastro = () =>{
 
                 </div>
                 <div className="button-container">
-                    <button className='ButtonCadastro' onClick={handleSubmit}>Cadastrar</button>
+                    <button className='ButtonCadastro' onClick={registerUser}>Cadastrar</button>
                     <button className='ButtonVoltar' onClick={voltarHome}>Voltar</button>
                 </div>
             </div>
