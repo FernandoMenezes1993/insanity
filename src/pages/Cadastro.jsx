@@ -5,7 +5,6 @@ import { Modal } from 'rsuite';
 
 import "./CadastroStyle.css"
 import 'rsuite/dist/rsuite-no-reset.min.css';
-import { arEG } from 'rsuite/esm/locales';
 
 const Cadastro = () =>{
     const navigate = useNavigate();
@@ -36,9 +35,10 @@ const Cadastro = () =>{
     const [msgModal, setMsgModal] = useState("");
 
     /*Chamando api com nome dos membros da guilda*/
-    const [membrosGuilda, setMembrosGuilda] = useState([]);
+    const [membrosGuilda, setMembrosGuilda] = useState();
 
     const getMembrosGuilda = async()=>{
+        console.log("aqui")
         try {
             const res = await fetch(`https://backend-insanity.onrender.com/api/playresGuild`);
             if(!res.ok){
@@ -47,7 +47,7 @@ const Cadastro = () =>{
             const data = await res.json();
             setMembrosGuilda(data);
         } catch (error) {
-            
+            console.error(error)
         }
     };
 
