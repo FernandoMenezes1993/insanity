@@ -6,6 +6,9 @@ import { Modal } from 'rsuite';
 import "./CadastroStyle.css"
 import 'rsuite/dist/rsuite-no-reset.min.css';
 
+/*CHAMADA DAS API*/
+const BackURL = import.meta.env.VITE_URL;
+
 const Cadastro = () =>{
     const navigate = useNavigate();
 
@@ -40,7 +43,7 @@ const Cadastro = () =>{
     const getMembrosGuilda = async()=>{
         console.log("aqui")
         try {
-            const res = await fetch(`https://backend-insanity.onrender.com/api/playresGuild`);
+            const res = await fetch(`${BackURL}/api/playresGuild`);
             if(!res.ok){
                 throw new Error(`Erro na consulta da API playresGuild`);
             }
