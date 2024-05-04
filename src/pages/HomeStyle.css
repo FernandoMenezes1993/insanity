@@ -1,0 +1,15 @@
+.containerHome{
+    display: flex;
+    height: 100vh;
+}
+.conteudoHome{
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+.titulo{
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 20px red;
+    font-size: 4rem;
+    margin-top: 0px;
+}

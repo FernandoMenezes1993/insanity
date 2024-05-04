@@ -15,8 +15,6 @@ const Login =  () =>{
     const [senha, setSenha] = useState('');
     
     const Logar = async ()=>{
-        console.log(nickname);
-        console.log(senha);
         setNickname("");
         setSenha("");
 
@@ -27,10 +25,7 @@ const Login =  () =>{
                 throw new Error(`Erro na busca da API ${apiCheckPasswod}`);
             }
             const res = await checksUser.json()
-            console.log(res)
             if(res.res == 200){
-                console.log("Vamos logar")
-
                 setLoading(true);
                 setTimeout(()=>{
                     setLoading(false);
@@ -38,14 +33,13 @@ const Login =  () =>{
                 }, 2000);
             }
             if(res.res == 502 || res.res == 404){
-                console.log("Login ou senha incorreta") 
+                console.log("Login ou senha incorreta");
             }
 
         } catch (error) {
             console.error(error)
         }
     };
-
     const Cadastrar = ()=>{
         navigate(`/Cadastro`);
     }; 

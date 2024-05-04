@@ -1,0 +1,57 @@
+.containerHome{
+    display: flex;
+    height: 100vh;
+}
+.conteudoHome{
+    flex: 1;
+    
+}
+.titulo{
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 20px red;
+    font-size: 4rem;
+    margin-top: 0px;
+}
+
+.btnsRegear{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 10rem;
+}
+    .btnSolicitar{
+        width: 210px;
+        font-size: 1rem;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        padding: 5px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+        font-weight: bold;
+        border-radius: 10px;
+        border: none;
+        background-color: rgb(55, 165, 45);
+        color: white;
+    }
+        .btnSolicitar:hover{
+            background-color: rgb(28, 110, 20);
+            transform: scale(1.05); 
+        }
+    .btnPendentes{
+        width: 210px;
+        font-size: 1rem;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        padding: 5px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+        font-weight: bold;
+        border-radius: 10px;
+        border: none;
+        background-color: rgb(255, 62, 62);
+        color: white;
+    }
+        .btnPendentes:hover{
+            background-color: rgb(138, 31, 31);
+            transform: scale(1.05); 
+        }
