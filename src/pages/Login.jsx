@@ -15,8 +15,7 @@ const Login =  () =>{
     const [senha, setSenha] = useState('');
     
     const Logar = async ()=>{
-        setNickname("");
-        setSenha("");
+        
         const apiCheckPasswod = `${BackURL}/api/checks/user/${nickname}/${senha}`
         try {
             const checksUser = await fetch(apiCheckPasswod);
@@ -36,12 +35,16 @@ const Login =  () =>{
                     setLoading(false);
                 }, 2000);
                 alert("Login ou senha incorreta");
+                setNickname("");
+                setSenha("");
             }
             if(res.res == 404){
                 setTimeout(()=>{
                     setLoading(false);
                 }, 2000);
                 alert("Conta não cadastrada");
+                setNickname("");
+                setSenha("");
             }
 
         } catch (error) {
