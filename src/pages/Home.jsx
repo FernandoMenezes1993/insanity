@@ -1,10 +1,9 @@
-
+import CustomSidenav  from "../../components/Nav/Nav"
 const Home = () =>{
-
     return(
         <div>
-            <h1>Bem vindo a insanity</h1>
-        </div>
+            <CustomSidenav />
+        </div> 
     )
 };
 

@@ -87,3 +87,10 @@
         .RecuperarSenha:hover{
             color:rgb(236, 11, 11);
         }
+
+        
+.rs-loader-content {
+    font-family: 'Arial', sans-serif;
+    font-size: 32px;
+    color: #ff0000;
+}
