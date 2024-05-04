@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect  } from 'react';
 
-import { Modal } from 'rsuite';
+import { Modal, Loader } from 'rsuite';
 
 import "./CadastroStyle.css"
 import 'rsuite/dist/rsuite-no-reset.min.css';
@@ -11,7 +11,6 @@ const BackURL = import.meta.env.VITE_URL;
 
 const Cadastro = () =>{
     const navigate = useNavigate();
-    const [nameVerified, setNameVerified] = useState(1);
 
     /*Formatação dos inputs*/
     const [inputNickname, setInputNickname] = useState('CadastroInput')
@@ -39,7 +38,8 @@ const Cadastro = () =>{
     const [msgModal, setMsgModal] = useState("");
 
     const[cssModalBody, setCssModalBody] = useState("");
-    const[imgModal, setImgModal] = useState("")
+    const[imgModal, setImgModal] = useState("");
+    const[loading, setLoading] = useState(false);
 
     /*Chamando api com nome dos membros da guilda*/
     const [membrosGuilda, setMembrosGuilda] = useState();
@@ -109,15 +109,16 @@ const Cadastro = () =>{
                                     
                                             const result = await response.json();
 
-                                            // Alerta de cadsatro realizado
+                                            setLoading(true);
                                             setTitleModal("Cadastrado");                                            
                                             setMsgModal("Cadastro realizado!");
                                             setImgModal('./img/msg/imgModalCompleto.webp');
                                             setCssModalBody("ModalBodyCadastrado");
-                                            handleOpen()
-
-                                            setTimeout(voltarHome, 3000);
-
+                                            setTimeout(()=>{
+                                                setLoading(false);
+                                                setTimeout(voltarHome, 3000);
+                                                handleOpen()
+                                            }, 5000);
                                         } catch (error) {
                                             console.error('Error:', error);
                                             alert('Erro ao criar usuário');
@@ -214,17 +215,22 @@ const Cadastro = () =>{
                     <button className='ButtonCadastro' onClick={registerUser}>Cadastrar</button>
                     <button className='ButtonVoltar' onClick={voltarHome}>Voltar</button>
                 </div>
-            </div>           
+            </div>
 
-            <Modal open={open} onClose={handleClose} className='ModalError' size="300px">
-                <Modal.Header>
-                    <Modal.Title className='ModalTitle'>{titleModal}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className={cssModalBody}>
-                    <img src={imgModal} alt="Error" className='ModalBodyImg' />
-                    <p className='ModalBodyP'>{msgModal}</p>
-                </Modal.Body>            
-            </Modal>
+            {loading ? (
+                <Loader size="lg" center content="Carregando..." />
+            ):(
+                <Modal open={open} onClose={handleClose} className='ModalError' size="300px">
+                    <Modal.Header>
+                        <Modal.Title className='ModalTitle'>{titleModal}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className={cssModalBody}>
+                        <img src={imgModal} alt="Error" className='ModalBodyImg' />
+                        <p className='ModalBodyP'>{msgModal}</p>
+                    </Modal.Body>            
+                </Modal>
+            )}
+            
         </div>
     )
 };
