@@ -17,7 +17,6 @@ const Login =  () =>{
     const Logar = async ()=>{
         setNickname("");
         setSenha("");
-        setLoading(true);
         const apiCheckPasswod = `${BackURL}/api/checks/user/${nickname}/${senha}`
         try {
             const checksUser = await fetch(apiCheckPasswod);
@@ -62,7 +61,7 @@ const Login =  () =>{
                     <p className='Titulo'>Insanity BR</p>                
                     <input type="text" placeholder='Digite seu nome aqui...' className='LoginInput' value={nickname} onChange={e => setNickname(e.target.value)}/>
                     <input type="password" placeholder='Digite sua senha...' className='LoginInput' value={senha} onChange={e => setSenha(e.target.value)}/>
-                    <button className='ButtonLogar' onClick={Logar} >Logar</button>
+                    <button className='ButtonLogar' onClick={() => { Logar(); setLoading(true); }} >Logar</button>
                     <button className='ButtonCadastrar' onClick={Cadastrar}>Cadastrar</button>
                     <Link to="" className="RecuperarSenha">Esqueci minha senha!</Link>             
                 </div>
