@@ -143,12 +143,20 @@ h1{
     text-align: center;
     margin: 0px;
 }
-.ModalBody{
+.ModalBodyError{
     padding-top: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: red;
+    border-radius: 10px;
+}
+.ModalBodyCadastrado{
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(21, 255, 0);
     border-radius: 10px;
 }
     .ModalBodyP{
