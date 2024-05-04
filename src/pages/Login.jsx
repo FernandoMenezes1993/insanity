@@ -17,7 +17,7 @@ const Login =  () =>{
     const Logar = async ()=>{
         setNickname("");
         setSenha("");
-
+        setLoading(true);
         const apiCheckPasswod = `${BackURL}/api/checks/user/${nickname}/${senha}`
         try {
             const checksUser = await fetch(apiCheckPasswod);
@@ -26,14 +26,23 @@ const Login =  () =>{
             }
             const res = await checksUser.json()
             if(res.res == 200){
-                setLoading(true);
+                
                 setTimeout(()=>{
                     setLoading(false);
                     navigate(`/insanity?q=${res.token}`);
                 }, 2000);
             }
-            if(res.res == 502 || res.res == 404){
-                console.log("Login ou senha incorreta");
+            if(res.res == 502){
+                setTimeout(()=>{
+                    setLoading(false);
+                }, 2000);
+                alert("Login ou senha incorreta");
+            }
+            if(res.res == 404){
+                setTimeout(()=>{
+                    setLoading(false);
+                }, 2000);
+                alert("Conta não cadastrada");
             }
 
         } catch (error) {
