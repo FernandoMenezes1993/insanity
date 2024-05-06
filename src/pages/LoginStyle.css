@@ -89,8 +89,6 @@
         }
 
         
-.rs-loader-content {
-    font-family: 'Arial', sans-serif;
-    font-size: 32px;
-    color: #ff0000;
+.white-loader {
+    color: white!important;
 }

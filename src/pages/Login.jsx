@@ -7,6 +7,24 @@ import "./LoginStyle.css"
 import 'rsuite/dist/rsuite-no-reset.min.css';
 
 const Login =  () =>{
+    //Acordar o back
+    const acordarBack = async()=>{
+        try {
+            const res = await fetch(`${BackURL}/acorda`);
+            if(!res.ok){
+                throw new Error(`Erro na consulta da API playresGuild`);
+            }
+            const data = await res.json();
+            console.log(data)
+        } catch (error) {
+            console.error(error)
+        }
+    };
+
+    useEffect(()=>{
+        acordarBack()
+    }, []);
+
     const navigate = useNavigate();
     const[loading, setLoading] = useState(false);
     const BackURL = import.meta.env.VITE_URL;    
@@ -28,7 +46,7 @@ const Login =  () =>{
                 setTimeout(()=>{
                     setLoading(false);
                     navigate(`/insanity?q=${res.token}`);
-                }, 2000);
+                }, 1000);
             }
             if(res.res == 502){
                 setTimeout(()=>{
@@ -58,7 +76,7 @@ const Login =  () =>{
 
         <div className="Login">
             {loading ? (
-                <Loader size="lg" center content="Carregando..." />
+                <Loader size="lg" speed="fast" center content="Carregando..." />
             ):(
                 <div className='Fomrs'>
                     <p className='Titulo'>Insanity BR</p>                

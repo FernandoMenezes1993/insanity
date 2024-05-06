@@ -1,5 +1,3 @@
-import { Link, useNavigate } from 'react-router-dom';
-
 import CustomSidenav  from "../../components/Nav/Nav"
 
 import "./HomeStyle.css"
