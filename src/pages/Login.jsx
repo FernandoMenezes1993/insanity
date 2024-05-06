@@ -5,14 +5,15 @@ import { Modal, Loader } from 'rsuite';
 
 import "./LoginStyle.css"
 import 'rsuite/dist/rsuite-no-reset.min.css';
+const BackURL = import.meta.env.VITE_URL;   
 
 const Login =  () =>{
     //Acordar o back
     const acordarBack = async()=>{
         try {
-            const res = await fetch(`${BackURL}/acorda`);
+            const res = await fetch(`${BackURL}/api/acorda`);
             if(!res.ok){
-                throw new Error(`Erro na consulta da API playresGuild`);
+                throw new Error(`Erro na consulta da API acorda`);
             }
             const data = await res.json();
             console.log(data)
@@ -27,7 +28,7 @@ const Login =  () =>{
 
     const navigate = useNavigate();
     const[loading, setLoading] = useState(false);
-    const BackURL = import.meta.env.VITE_URL;    
+     
 
     const [nickname, setNickname] = useState('');
     const [senha, setSenha] = useState('');
@@ -76,7 +77,7 @@ const Login =  () =>{
 
         <div className="Login">
             {loading ? (
-                <Loader size="lg" speed="fast" center content="Carregando..." />
+                <Loader size="lg" speed="fast" center content="Carregando..." style={{color: "with"}}/>
             ):(
                 <div className='Fomrs'>
                     <p className='Titulo'>Insanity BR</p>                

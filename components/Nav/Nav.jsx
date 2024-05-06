@@ -7,16 +7,16 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import 'rsuite/dist/rsuite-no-reset.min.css';
 
-function CustomSidenav (){  
+function CustomSidenav ( { token } ){  
     const navigate = useNavigate();  
     const [expanded, setExpanded] = useState(true);
     const [activeKey, setActiveKey] = useState('1');
 
     const pgPerfil = ()=>{
-        navigate(`/insanity`);
+        navigate(`/insanity?q=${token}`);
     }
     const pgRegear = ()=>{
-        navigate(`/regear`);
+        navigate(`/regear?q=${token}`);
     }
     return(
         <div style={{ width: 240}}>            
