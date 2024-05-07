@@ -20,13 +20,11 @@ const Home = () =>{
             }
             const data = await res.json();
             setPlayer(data);
-            console.log(data)
             if(data.res == 502){
-                console.log("token invalido");
                 navigate(`/`);
             }
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     };
     useEffect(()=>{

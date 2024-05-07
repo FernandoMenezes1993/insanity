@@ -1,0 +1,121 @@
+.tabelaCss{
+    display: flex;
+    margin-top: -50px;
+    width: 100%;
+}
+table{
+    margin-top: 80px;
+    color: black;
+    background-color: white;
+    padding: 5px;
+    width: 100%;
+}
+table, th, td{
+    border: 5px solid #ffffff;
+    border-collapse: collapse;
+    border-radius: 5px;
+    
+}
+th{
+    background-color: rgb(179, 25, 25);
+    color: white;    
+}
+td{
+    background-color: rgba(109, 108, 108, 0.123);
+    
+}
+.tabelaTitle{
+    font-size: 1.3rem;
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 5px;
+    border: 5px solid #ffffff;
+    border-radius: 12px;
+    
+}
+.linhaTabela{
+    border: solid 2px rgb(231, 34, 34);    
+}
+    .idTabela{
+        width: 200px;
+        padding: 5px;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+    .NameTabela{
+        width: 90px;
+        padding: 5px;
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+    .acessarTabela{
+        width: 50px;
+        padding: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: #007bff;
+        text-decoration: none;
+        cursor: pointer;
+        font-family:Arial, Helvetica, sans-serif;
+        font-style:unset;
+    }
+    .acessarTabela:hover{
+        color: #06386e;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+    .ResponsavelTabela{
+        width: 100px;
+        padding: 5px;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+    .ClassTabela{
+        width: 100px;
+        padding: 5px;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+    .Pendente{
+        width: 75px;
+        padding: 5px;
+        Color: red;
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+    .Aceito{
+        width: 75px;
+        padding: 5px;
+        Color: rgb(184, 142, 51);
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+    .Entrege{
+        width: 75px;
+        padding: 5px;
+        Color: rgb(0, 119, 255);
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+    .Finalizado{
+        width: 75px;
+        padding: 5px;
+        Color: rgb(39, 170, 34);
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+.pagination{
+    text-align: center;
+    margin-top: 80px; 
+    margin-bottom: 10px;
+    
+}
+    .pagination button {
+        margin: 0 5px; /* Espaçamento entre botões */
+        padding: 5px 10px; /* Padding para os botões */
+        cursor: pointer; /* Cursor de clique para os botões */
+        background-color: #f8f9fa; /* Cor de fundo */
+        border: 1px solid #ccc; /* Borda dos botões */
+        outline: none; /* Remove o contorno ao focar */
+        margin-bottom: 10px;
+    }
+    .pagination .active {
+        background-color: #007bff; /* Cor de fundo para o botão ativo */
+        color: white; /* Cor do texto para o botão ativo */
+        border-color: #0056b3; /* Cor da borda para o botão ativo */
+    }

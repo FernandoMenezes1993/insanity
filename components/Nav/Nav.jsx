@@ -32,8 +32,7 @@ function CustomSidenav ( { token } ){
                             Regear
                         </Nav.Item>    
                     </Nav>
-                </Sidenav.Body>
-                <Sidenav.Toggle onToggle={expanded => setExpanded(expanded)} />
+                </Sidenav.Body>              
             </Sidenav>
         </div>       
     )
