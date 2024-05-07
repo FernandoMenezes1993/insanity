@@ -6,8 +6,6 @@ import { useState, useEffect } from 'react';
 
 //Modal
 import { Modal, Button, Dropdown } from 'rsuite';
-import { Table } from 'rsuite';
-const { Column, HeaderCell, Cell } = Table;
 
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import "./RegearStyle.css"
@@ -25,31 +23,49 @@ const Regear = () =>{
         setSelectedItem('Classe');
         setLinkRegear("")
     };
+
+       
     const handleSolicitar = async()=>{
         const newRegear ={
             Name: player.User,
             Link: linkRegear,
             Class: selectedItem
         };
-        try {
-            const res = await fetch(`${BackURL}/api/create/regear`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                    body: JSON.stringify(newRegear)
-                });
-
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-        
-                const result = await res.json();
-        } catch (error) {
+        if (linkRegear.includes("albiononline.com/killboard/kill/")) {
+            try {
+                const res = await fetch(`${BackURL}/api/create/regear`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                        body: JSON.stringify(newRegear)
+                    });
+    
+                    if (!res.ok) {
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                    }
             
+                    const result = await res.json();
+
+                    if(result == 200){
+                        setOpen(false)
+                        window.location.reload();
+                    }else{
+                        console.log("Erro na solicitação");
+                        setLinkRegear("")
+                        console.log("500");
+                    }
+            } catch (error) {
+                console.log("404");
+                setLinkRegear("")
+            }
+            
+        } else {
+            console.log("A URL não segue o padrão esperado.");
+            alert('Link invalido!');
+            setLinkRegear("")
         }
-        setOpen(false)
-        window.location.reload();
+       
     }
     const [selectedItem, setSelectedItem] = useState('Classe');
     const [linkRegear, setLinkRegear] = useState('');
@@ -147,6 +163,7 @@ const Regear = () =>{
                     </Button>
                 </Modal.Footer>
             </Modal>
+           
         </div> 
     )
 };
