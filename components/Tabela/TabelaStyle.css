@@ -2,6 +2,7 @@
     display: flex;
     margin-top: -50px;
     width: 100%;
+    position: relative;
 }
 table{
     margin-top: 80px;
@@ -36,7 +37,7 @@ td{
     border: solid 2px rgb(231, 34, 34);    
 }
     .idTabela{
-        width: 200px;
+        width: 100px;
         padding: 5px;
         font-family:Arial, Helvetica, sans-serif;
     }
@@ -85,13 +86,6 @@ td{
         font-family:Arial, Helvetica, sans-serif;
         font-weight: bold;
     }
-    .Entrege{
-        width: 75px;
-        padding: 5px;
-        Color: rgb(0, 119, 255);
-        font-family:Arial, Helvetica, sans-serif;
-        font-weight: bold;
-    }
     .Finalizado{
         width: 75px;
         padding: 5px;
@@ -103,6 +97,7 @@ td{
     text-align: center;
     margin-top: 80px; 
     margin-bottom: 10px;
+    position: relative;
     
 }
     .pagination button {
@@ -119,3 +114,21 @@ td{
         color: white; /* Cor do texto para o botão ativo */
         border-color: #0056b3; /* Cor da borda para o botão ativo */
     }
+
+.filtro-Membro{
+    position: absolute;
+    left: 85.4%;
+    top: 25%;    
+}
+    .filter-status-Membro{
+        margin-left: 20px;
+        padding: 2px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+        border: none;
+    }
+    .filter-nome-Membro{
+        display: none;
+    }
+
+

@@ -1,0 +1,83 @@
+.pgPedido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(0, 0, 0);
+    height: 100vh;
+    position: relative;
+    gap: 5%;
+}
+
+.infogerais{
+    margin-top: 1%;
+    width: 95%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+    .buid{
+        background: rgba(248, 247, 247, 0.247);
+        width: 30%;
+        height: 95%;
+        margin-top: .5%;
+        margin-left: .5%;
+        border-radius: 20px;
+        box-shadow: 1px 1px 10px white;
+        position: relative;
+    }
+        .Bota, .peitoral, .cabeca{
+            left: 35%;
+            position: absolute;
+            width: 25%; 
+            min-height: 22%; 
+        }
+        .peitoral img, .Bota img, .cabeca img, .OffHand img,  .MainHand img {
+            width: 100%;  
+            height: auto; 
+        }
+        .cabeca {
+            top: 4%;            
+        }
+        .peitoral{
+            top: 34%;            
+        }
+        .Bota{
+            top: 64%;            
+        }
+        .OffHand,  .MainHand{
+            position: absolute;
+            width: 25%; 
+            min-height: 22%;
+            top: 34%;
+        }
+        .MainHand{            
+            left: 11%; 
+        }
+        .OffHand{
+            left: 59%;
+        }
+           
+            
+.dadosPedidos{
+    background-color: white;
+    width: 95%;
+    height: 40%;
+    border: solid 1px rgb(173, 0, 0);
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgba(255, 0, 0, 0.836);
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    gap: 20px;
+}
+    .span-Pendente{
+        color: red;
+    }
+    .divDados{
+        padding-left: 5px;
+    }
+    .divProgrecao{
+        width: 72%;
+    }
+
+

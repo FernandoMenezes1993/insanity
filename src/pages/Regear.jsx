@@ -24,12 +24,28 @@ const Regear = () =>{
         setLinkRegear("")
     };
 
-       
+    const [dia, setDia] = useState("");
+    const [mes, setMes] = useState("");
+    const [ano, setAno] = useState("");
     const handleSolicitar = async()=>{
+        const now = new Date();
+        const day = now.getDate();
+        const month = now.getMonth() + 1; // Mês (0-11), ajustado para 1-12
+        const year = now.getFullYear();
+
+        const formattedDay = day < 10 ? `0${day}` : `${day}`;
+        const formattedMonth = month < 10 ? `0${month}` : `${month}`;
+
+        setDia(formattedDay);
+        setMes(formattedMonth);
+        setAno(year.toString());
+
+        const dataSolicitado = `${formattedDay}/${formattedMonth}/${year}`;
         const newRegear ={
             Name: player.User,
             Link: linkRegear,
-            Class: selectedItem
+            Class: selectedItem,
+            Data: dataSolicitado
         };
         if (linkRegear.includes("albiononline.com/killboard/kill/")) {
             try {
@@ -75,6 +91,7 @@ const Regear = () =>{
 
     const [player, setPlayer] = useState([])
     const verificarToken = async()=>{
+        
         try {
             const res = await fetch(`${BackURL}/api/checks/${token}`);
             if(!res.ok){
@@ -118,9 +135,10 @@ const Regear = () =>{
             <div className="conteudoHome">
                 <div className="btnsRegear">
                     <button className="btnSolicitar" onClick={handleOpen}>solicitar re-gear</button>
+                    
                 </div>
 
-                <Tabela solicitações={dataRegear} token={token}/>
+                <Tabela solicitações={dataRegear} token={token} cargo={player.Cargo}/>
             </div>
             
             

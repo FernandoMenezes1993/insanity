@@ -9,7 +9,7 @@
 
 .Login{
     background-image: url("../../public/img/insanitLogo.png");
-    background-size: 50%;  /* Ajuste este valor conforme necessário */
+    background-size: 50%;  
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;

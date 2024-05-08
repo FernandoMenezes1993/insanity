@@ -74,7 +74,6 @@ const Login =  () =>{
         navigate(`/Cadastro`);
     }; 
     return(
-
         <div className="Login">
             {loading ? (
                 <Loader size="lg" speed="fast" center content="Carregando..." style={{color: "with"}}/>
@@ -87,8 +86,7 @@ const Login =  () =>{
                     <button className='ButtonCadastrar' onClick={Cadastrar}>Cadastrar</button>
                     <Link to="" className="RecuperarSenha">Esqueci minha senha!</Link>             
                 </div>
-            )}
-            
+            )}            
         </div>
     )
 };

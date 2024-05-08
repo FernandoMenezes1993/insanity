@@ -26,7 +26,7 @@ function Tabela({ solicitações, token }) {
             <table>
                 <thead>
                     <tr>
-                        <th className="tabelaTitle">ID</th>
+                        <th className="tabelaTitle">Data</th>
                         <th className="tabelaTitle">Nome</th>
                         <th className="tabelaTitle">Responsável</th>
                         <th className="tabelaTitle">Classe</th>
@@ -37,7 +37,7 @@ function Tabela({ solicitações, token }) {
                 <tbody>
                     {solicitaçõesAtuais.map(solicitacao => (
                         <tr key={solicitacao._id}>
-                            <td className="idTabela">{solicitacao._id}</td>
+                            <td className="idTabela"><strong>{solicitacao.Data}</strong></td>
                             <td className="NameTabela">{solicitacao.Name}</td>
                             <td className="ResponsavelTabela">{solicitacao.Responsavel}</td>
                             <td className="ClassTabela">{solicitacao.Class}</td>
