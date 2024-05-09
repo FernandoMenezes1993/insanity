@@ -131,14 +131,14 @@ const Regear = () =>{
     }, [player]);
     return(
         <div className="containerHome">
-            <CustomSidenav token={token}/>
+            <CustomSidenav token={token} cargo={player.Cargo}/>
             <div className="conteudoHome">
                 <div className="btnsRegear">
                     <button className="btnSolicitar" onClick={handleOpen}>solicitar re-gear</button>
                     
                 </div>
 
-                <Tabela solicitações={dataRegear} token={token} cargo={player.Cargo}/>
+                <Tabela solicitações={dataRegear} token={token} />
             </div>
             
             

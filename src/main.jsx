@@ -11,6 +11,7 @@ import Home from "./pages/Home.jsx"
 import Cadastro from "./pages/Cadastro.jsx"
 import Regear from "./pages/Regear.jsx"
 import Pedido from "./pages/Pedido.jsx"
+import Allregear from "./pages/staff/Allregear.jsx"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/cadastro' element={<Cadastro />}/>
           <Route path='/regear' element={<Regear />}/>
           <Route path='/pedido' element={<Pedido />}/>
+          <Route path='/staff/regear' element={<Allregear />}/>
         </Route>
       </Routes>
     </BrowserRouter>

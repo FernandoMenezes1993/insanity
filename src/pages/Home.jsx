@@ -30,10 +30,9 @@ const Home = () =>{
     useEffect(()=>{
         verificarToken()
     }, []);
-
     return(
         <div className="containerHome">
-            <CustomSidenav token={token}/>
+            <CustomSidenav token={token}  cargo={player.Cargo}/>
             <div className="conteudoHome">
                 <h1 className="titulo">{player.User}</h1>
             </div>

@@ -66,6 +66,12 @@ const Pedido =  () =>{
                     <div className="OffHand">
                         <img src={`https://render.albiononline.com/v1/item/${detaRegear.OffHand}`} alt="" />
                     </div>
+                    <div className="Capa">
+                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.Capa}`} alt="" />
+                    </div>
+                    <div className="Bolsa">
+                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.Bolsa}`} alt="" />
+                    </div>
                 </div>
             </div>
             <div className="dadosPedidos">
