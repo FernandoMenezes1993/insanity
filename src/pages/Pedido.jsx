@@ -123,8 +123,6 @@ const Pedido =  () =>{
             DataFinalizado: DataFinalizado, 
             MsgStaff: msgStaff
         }
-        setOpen(false);
-        window.location.reload();
         try {
             const response = await fetch(`${BackURL}/api/regear/finalizar/${detaRegear._id}`, {
                 method: 'PUT',
@@ -140,8 +138,9 @@ const Pedido =  () =>{
                 
         } catch (error) {
             
-        }
-        
+        }        
+        setOpen(false);
+        window.location.reload();        
     }
     const finalizarRegear = async()=>{
         const now = new Date();
@@ -159,8 +158,6 @@ const Pedido =  () =>{
             DataFinalizado: DataFinalizado, 
             MsgStaff: msgStaff
         }
-        setOpen(false);
-        window.location.reload();
         try {
             const response = await fetch(`${BackURL}/api/regear/finalizar/${detaRegear._id}`, {
                 method: 'PUT',
@@ -176,7 +173,9 @@ const Pedido =  () =>{
                 
         } catch (error) {
             
-        }
+        }        
+        setOpen(false);
+        window.location.reload();
     }
     
     return(
