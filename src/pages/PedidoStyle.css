@@ -180,7 +180,16 @@
             border-radius: 10px 10px 0px 0px;
             height: 80%;
             display: flex;
+            font-family: Arial, Helvetica, sans-serif;
         }
+            .inputBau{
+                height: 20px;
+                width: 50px;
+                border: 2px solid black;
+                margin-top: 13px;
+                margin-left: 5px;
+                border-radius: 5px;
+            }
         .finalizarRegear{
             display: flex;
             justify-content: center;
@@ -219,11 +228,4 @@
 .Membro{
     background: red;
     width: 72%;
-}
-
-/*MODAL*/
-
-.msgStaff{
-    width: 90%;
-    height: 50%;
 }

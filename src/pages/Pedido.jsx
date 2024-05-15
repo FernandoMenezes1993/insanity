@@ -1,7 +1,7 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState, useEffect  } from 'react';
 
-import { Modal, Button, Placeholder } from 'rsuite';
+import { Modal, Button } from 'rsuite';
 import "./PedidoStyle.css"
 import 'rsuite/dist/rsuite-no-reset.min.css';
 
@@ -17,18 +17,9 @@ const Pedido =  () =>{
         setOpen(false);
     }
 
-    /*MODAL Finalizado*/
-    const [openFinalizar, setOpenFinalizar] = useState(false);
-    const mostrarModalFinalizar = () => {
-        setMsgStaffTitulo("Deixe sua mensagem!");
-        setOpenFinalizar(true);
-    };
-    const fecharModalFinalizar = () => {
-        setOpenFinalizar(false);
-    };
-
     const [msgStaffTitulo, setMsgStaffTitulo] = useState("");
     const [msgStaff, setMsgStaff] = useState('')
+    const [bauRegear, setBauRegear] = useState('')
 
     const BackURL = import.meta.env.VITE_URL;
     const [searchParams]  = useSearchParams();
@@ -104,8 +95,6 @@ const Pedido =  () =>{
         } catch (error) {
             
         }
-       
-        //console.log(dataToken.User)
     }
     const recusarRegear = async()=>{
         const now = new Date();
@@ -125,6 +114,8 @@ const Pedido =  () =>{
         }        
           
         try {
+            setOpen(false);
+            window.location.reload();  
             const response = await fetch(`${BackURL}/api/regear/finalizar/${detaRegear._id}`, {
                 method: 'PUT',
                 headers: {
@@ -140,8 +131,7 @@ const Pedido =  () =>{
         } catch (error) {
             
         } 
-        setOpen(false);
-        window.location.reload();  
+        
     }
     const finalizarRegearPronto = async()=>{
         const now = new Date();
@@ -157,9 +147,10 @@ const Pedido =  () =>{
             Responsavel:  dataToken.User,
             Status: "Finalizado",
             DataFinalizado: DataFinalizado, 
-            MsgStaff: msgStaff
+            MsgStaff: bauRegear,
         }
         try {
+            window.location.reload()
             const response = await fetch(`${BackURL}/api/regear/finalizar/${detaRegear._id}`, {
                 method: 'PUT',
                 headers: {
@@ -168,14 +159,10 @@ const Pedido =  () =>{
                     body: JSON.stringify(attRegear)
                 });
         
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            if(openFinalizar){
-                fecharModalFinalizar();
-                window.location.reload();
-            }
-            
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
         } catch (error) {
             console.error(error)
         }
@@ -221,10 +208,10 @@ const Pedido =  () =>{
                 <div className={`${dataToken.Cargo}`}>
                     <div className={`staff-${detaRegear.Status}-Dinamico`}>
                         <div className="contentStaff">
-
+                            <p>Em qual baú o Re-gear está:</p> <input type="text" className="inputBau" value={bauRegear} onChange={e => setBauRegear(e.target.value)}/>
                         </div>
                         <div className="finalizarRegear">
-                            <button className="btnFinalizar" onClick={mostrarModalFinalizar}>Finalizar</button>
+                            <button className="btnFinalizar" onClick={finalizarRegearPronto}>Finalizar</button>
                         </div>
                     </div>
                     {/*Div some quando o cargo for diferente de Staff*/}
@@ -254,24 +241,6 @@ const Pedido =  () =>{
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-            <Modal open={openFinalizar} onClose={fecharModalFinalizar} size="xs">
-                <Modal.Header>
-                    <Modal.Title>{`${msgStaffTitulo}`}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="modalBody">
-                    <textarea className="msgStaff" type="text" placeholder="Deixe sua mensagem aqui..." value={msgStaff} onChange={e => setMsgStaff(e.target.value)} rows={6}/>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={finalizarRegearPronto} appearance="primary">
-                        Finalizar
-                    </Button>
-                    <Button onClick={fecharModalFinalizar} appearance="subtle">
-                        Cancelar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-           
         </div>
     )
 };
