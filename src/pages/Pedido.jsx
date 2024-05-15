@@ -63,6 +63,9 @@ const Pedido =  () =>{
         getDetaRegear();
     }, []);
 
+    const atualizarPagina = ()=>{
+        window.location.reload();
+    }
     
     const aceitarRegear = async()=>{
         const now = new Date();
@@ -91,7 +94,7 @@ const Pedido =  () =>{
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                window.location.reload();
+                atualizarPagina();
         } catch (error) {
             
         }
@@ -114,8 +117,7 @@ const Pedido =  () =>{
         }        
           
         try {
-            setOpen(false);
-            window.location.reload();  
+            
             const response = await fetch(`${BackURL}/api/regear/finalizar/${detaRegear._id}`, {
                 method: 'PUT',
                 headers: {
@@ -123,17 +125,18 @@ const Pedido =  () =>{
                 },
                     body: JSON.stringify(attRegear)
                 });
-        
+                window.location.reload()
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }                        
-                
+                atualizarPagina();
         } catch (error) {
             
         } 
         
     }
     const finalizarRegearPronto = async()=>{
+        console.log("inicio a função");
         const now = new Date();
         const day = now.getDate();
         const month = now.getMonth() + 1; 
@@ -150,7 +153,7 @@ const Pedido =  () =>{
             MsgStaff: bauRegear,
         }
         try {
-            window.location.reload()
+            console.log("entro no try");
             const response = await fetch(`${BackURL}/api/regear/finalizar/${detaRegear._id}`, {
                 method: 'PUT',
                 headers: {
@@ -158,11 +161,12 @@ const Pedido =  () =>{
                 },
                     body: JSON.stringify(attRegear)
                 });
-        
+                console.log("entro no try");
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                
+                console.log("deveria chamar a função aqui");
+                atualizarPagina();
         } catch (error) {
             console.error(error)
         }
