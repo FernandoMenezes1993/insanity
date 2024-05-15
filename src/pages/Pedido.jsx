@@ -235,7 +235,7 @@ const Pedido =  () =>{
             </div>
 
 
-            <Modal open={open} onClose={fecharModalFinalizar} size="xs">
+            <Modal open={open} onClose={handleClose} size="xs">
                 <Modal.Header>
                     <Modal.Title>{`${msgStaffTitulo}`}</Modal.Title>
                 </Modal.Header>
