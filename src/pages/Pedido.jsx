@@ -135,11 +135,12 @@ const Pedido =  () =>{
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }                        
-                setOpen(false);
-                window.location.reload(); 
+                
         } catch (error) {
             
-        }       
+        }
+        setOpen(false);
+        window.location.reload();     
     }
     const finalizarRegearPronto = async()=>{
         const now = new Date();
@@ -169,7 +170,7 @@ const Pedido =  () =>{
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            setOpenFinalizar(false);
+            fecharModalFinalizar();
             window.location.reload();
         } catch (error) {
             console.error(error)
