@@ -142,7 +142,7 @@ const Pedido =  () =>{
         setOpen(false);
         window.location.reload();        
     }
-    const finalizarRegear = async()=>{
+    const finalizarRegearPronto = async()=>{
         const now = new Date();
         const day = now.getDate();
         const month = now.getMonth() + 1; 
@@ -167,12 +167,12 @@ const Pedido =  () =>{
                     body: JSON.stringify(attRegear)
                 });
         
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
                 
         } catch (error) {
-            
+            console.error(error)
         }        
         setOpen(false);
         window.location.reload();
@@ -260,7 +260,7 @@ const Pedido =  () =>{
                     <textarea className="msgStaff" type="text" placeholder="Deixe sua mensagem aqui..." value={msgStaff} onChange={e => setMsgStaff(e.target.value)} rows={6}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={finalizarRegear} appearance="primary">
+                    <Button onClick={finalizarRegearPronto} appearance="primary">
                         Finalizar
                     </Button>
                     <Button onClick={fecharModalFinalizar} appearance="subtle">
