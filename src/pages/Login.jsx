@@ -84,7 +84,7 @@ const Login =  () =>{
                     <input type="password" placeholder='Digite sua senha...' className='LoginInput' value={senha} onChange={e => setSenha(e.target.value)}/>
                     <button className='ButtonLogar' onClick={() => { Logar(); setLoading(true); }} >Logar</button>
                     <button className='ButtonCadastrar' onClick={Cadastrar}>Cadastrar</button>
-                    <Link to="" className="RecuperarSenha">Esqueci minha senha!</Link>             
+                    <Link to="" className="RecuperarSenha">Esqueci minha senha!</Link>
                 </div>
             )}            
         </div>

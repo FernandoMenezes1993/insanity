@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 //Modal
-import { Modal, Button, Dropdown } from 'rsuite';
+import { Modal, Button, Dropdown, Loader } from 'rsuite';
 
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import "./RegearStyle.css"
 const Regear = () =>{
+    const[loading, setLoading] = useState(false);
     const BackURL = import.meta.env.VITE_URL;
     const navigate = useNavigate();
     const [searchParams]  = useSearchParams();
@@ -40,6 +41,7 @@ const Regear = () =>{
         setMes(formattedMonth);
         setAno(year.toString());
 
+        setLoading(true);
         const dataSolicitado = `${formattedDay}/${formattedMonth}/${year}`;
         const newRegear ={
             Name: player.User,
@@ -60,7 +62,9 @@ const Regear = () =>{
                     if (!res.ok) {
                         throw new Error(`HTTP error! status: ${res.status}`);
                     }
-            
+                    setTimeout(()=>{
+                        setLoading(false);
+                    }, 10000);
                     const result = await res.json();
 
                     if(result == 200){
@@ -141,46 +145,49 @@ const Regear = () =>{
                 <Tabela solicitações={dataRegear} token={token} />
             </div>
             
-            
-            <Modal open={open} onClose={handleClose} className="modalSolicitarRegear">
-                <Modal.Header className="modalRegearHeader">
-                    <Modal.Title className="modalRegearTitle">Solicitação de Re-gear</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="modalRegearBody" size="lg">
-                    <p>Olá, {player.User}!</p>
-                    <p>Para solicitar seu re-gear, você deve ter o link da sua morte e colocar no campo abaixo.</p>
-                    <p>Você pode pegar esse link pelo <a href="https://murderledger.com/" target="_blank" className="urlLink">Murder Ledger</a>, ou direto pelo <a href="https://albiononline.com/killboard" target="_blank" className="urlLink">Killboard</a> do Albion</p>
+            {loading ? (
+                <Loader size="lg" center content="Carregando..." />
+            ):(
+                <Modal open={open} onClose={handleClose} className="modalSolicitarRegear">
+                    <Modal.Header className="modalRegearHeader">
+                        <Modal.Title className="modalRegearTitle">Solicitação de Re-gear</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="modalRegearBody" size="lg">
+                        <p>Olá, {player.User}!</p>
+                        <p>Para solicitar seu re-gear, você deve ter o link da sua morte e colocar no campo abaixo.</p>
+                        <p>Você pode pegar esse link pelo <a href="https://murderledger.com/" target="_blank" className="urlLink">Murder Ledger</a>, ou direto pelo <a href="https://albiononline.com/killboard" target="_blank" className="urlLink">Killboard</a> do Albion</p>
 
-                    <div className="divInputLink">
-                        <input className="inputLink" type="text" placeholder="Coloque o link da morte aqui..." value={linkRegear} onChange={e => setLinkRegear(e.target.value)}/>
+                        <div className="divInputLink">
+                            <input className="inputLink" type="text" placeholder="Coloque o link da morte aqui..." value={linkRegear} onChange={e => setLinkRegear(e.target.value)}/>
 
-                        <div className="divDropdown" onSelect={handleSelect}>
-                            <Dropdown title={selectedItem} className="classDropdown">
-                                <Dropdown.Item eventKey="Tanc" onSelect={() => setSelectedItem("Tanc")}>Tanc</Dropdown.Item>
-                                <Dropdown.Item eventKey="DPS" onSelect={() => setSelectedItem("DPS")}>DPS</Dropdown.Item>
-                                <Dropdown.Item eventKey="Suporte" onSelect={() => setSelectedItem("Suporte")}>Suporte</Dropdown.Item>
-                                <Dropdown.Item eventKey="Healer" onSelect={() => setSelectedItem("Healer")}>Healer</Dropdown.Item>
-                                <Dropdown.Item eventKey="BM" onSelect={() => setSelectedItem("BM")}>BM</Dropdown.Item>
-                            </Dropdown>
+                            <div className="divDropdown" onSelect={handleSelect}>
+                                <Dropdown title={selectedItem} className="classDropdown">
+                                    <Dropdown.Item eventKey="Tanc" onSelect={() => setSelectedItem("Tanc")}>Tanc</Dropdown.Item>
+                                    <Dropdown.Item eventKey="DPS" onSelect={() => setSelectedItem("DPS")}>DPS</Dropdown.Item>
+                                    <Dropdown.Item eventKey="Suporte" onSelect={() => setSelectedItem("Suporte")}>Suporte</Dropdown.Item>
+                                    <Dropdown.Item eventKey="Healer" onSelect={() => setSelectedItem("Healer")}>Healer</Dropdown.Item>
+                                    <Dropdown.Item eventKey="BM" onSelect={() => setSelectedItem("BM")}>BM</Dropdown.Item>
+                                </Dropdown>
+                            </div>
                         </div>
-                    </div>
-                    
+                        
 
-                    <div className="divAtencao">
-                        <p className="pAtencao">ATENÇÃO</p>
-                    </div>
-                    <p>* Itens errados não teram RE-GEAR</p>
-                    <p>* Itens com tier não equivalente ao solicitados não teram RE-GEAR</p>
-                </Modal.Body>
-                <Modal.Footer className="modalRegearFooter">
-                    <Button onClick={handleSolicitar} appearance="primary" className="btnModalSolicitar">
-                        Solicitar
-                    </Button>
-                    <Button onClick={handleClose} appearance="subtle" className="btnModalCancelar">
-                        Cancelar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                        <div className="divAtencao">
+                            <p className="pAtencao">ATENÇÃO</p>
+                        </div>
+                        <p>* Itens errados não teram RE-GEAR</p>
+                        <p>* Itens com tier não equivalente ao solicitados não teram RE-GEAR</p>
+                    </Modal.Body>
+                    <Modal.Footer className="modalRegearFooter">
+                        <Button onClick={handleSolicitar} appearance="primary" className="btnModalSolicitar">
+                            Solicitar
+                        </Button>
+                        <Button onClick={handleClose} appearance="subtle" className="btnModalCancelar">
+                            Cancelar
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            )}
            
         </div> 
     )
