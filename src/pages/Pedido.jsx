@@ -169,7 +169,7 @@ const Pedido =  () =>{
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            fecharModalFinalizar(false);
+            setOpenFinalizar(false);
             window.location.reload();
         } catch (error) {
             console.error(error)
