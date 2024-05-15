@@ -60,7 +60,7 @@ const Allregear = () =>{
                     <p>Ola mundo</p>
                 </div>
                 <div className="divTabelaStaff">
-                    <TabelaStaff regears={detaRegear}/>
+                    <TabelaStaff  regears={detaRegear} token={token}/>
                 </div>
             </div>
         </div> 

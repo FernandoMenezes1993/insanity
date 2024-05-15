@@ -30,7 +30,7 @@ const Regear = () =>{
     const handleSolicitar = async()=>{
         const now = new Date();
         const day = now.getDate();
-        const month = now.getMonth() + 1; // Mês (0-11), ajustado para 1-12
+        const month = now.getMonth() + 1; 
         const year = now.getFullYear();
 
         const formattedDay = day < 10 ? `0${day}` : `${day}`;

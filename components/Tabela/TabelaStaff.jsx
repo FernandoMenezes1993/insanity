@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./TabelaStaffStyle.css";
 
-function TabelaStaff( { regears }) {
+function TabelaStaff( { regears, token }) {
     const [paginaAtual, setPaginaAtual] = useState(1);
     const [itensPorPagina, setItensPorPagina] = useState(12);
 
