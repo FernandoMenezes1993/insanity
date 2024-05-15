@@ -136,7 +136,6 @@ const Pedido =  () =>{
         
     }
     const finalizarRegearPronto = async()=>{
-        console.log("inicio a função");
         const now = new Date();
         const day = now.getDate();
         const month = now.getMonth() + 1; 
@@ -153,7 +152,6 @@ const Pedido =  () =>{
             MsgStaff: bauRegear,
         }
         try {
-            console.log("entro no try");
             const response = await fetch(`${BackURL}/api/regear/finalizar/${detaRegear._id}`, {
                 method: 'PUT',
                 headers: {
@@ -161,11 +159,9 @@ const Pedido =  () =>{
                 },
                     body: JSON.stringify(attRegear)
                 });
-                console.log("entro no try");
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                console.log("deveria chamar a função aqui");
                 atualizarPagina();
         } catch (error) {
             console.error(error)
