@@ -174,7 +174,7 @@ const Pedido =  () =>{
         } catch (error) {
             console.error(error)
         }        
-        setOpen(false);
+        fecharModalFinalizar(false);
         window.location.reload();
     }
     
