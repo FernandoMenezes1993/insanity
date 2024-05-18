@@ -35,16 +35,18 @@ function TabelaStaff( { regears, token }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {solicitaçõesAtuais.map(regear => (
-                        <tr key={regear._id}>
-                            <td className="idTabela"><strong>{regear.Data}</strong></td>
-                            <td className="NameTabela">{regear.Name}</td>
-                            <td className="ResponsavelTabela">{regear.Responsavel}</td>
-                            <td className="ClassTabela">{regear.Class}</td>
-                            <td className={regear.Status}>{regear.Status}</td>
-                            <td className="acessarTabela" onClick={() => chamarRegear(regear)}>Acessar</td>
-                        </tr>
-                    ))}
+                {solicitaçõesAtuais
+                        .filter(regear => regear.Status !== "Negado" && regear.Status !== "Finalizado")
+                        .map(regear => (
+                            <tr key={regear._id}>
+                                <td className="idTabela"><strong>{regear.Data}</strong></td>
+                                <td className="NameTabela">{regear.Name}</td>
+                                <td className="ResponsavelTabela">{regear.Responsavel}</td>
+                                <td className="ClassTabela">{regear.Class}</td>
+                                <td className={regear.Status}>{regear.Status}</td>
+                                <td className="acessarTabela" onClick={() => chamarRegear(regear)}>Acessar</td>
+                            </tr>
+                        ))}
                 </tbody>
             </table> 
 

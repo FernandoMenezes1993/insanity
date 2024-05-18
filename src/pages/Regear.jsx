@@ -146,7 +146,10 @@ const Regear = () =>{
             </div>
             
             {loading ? (
-                <Loader size="lg" center content="Carregando..." />
+                <div className="telaCarregamento">
+                    <Loader size="lg" center content="Carregando..." />
+                </div>
+                
             ):(
                 <Modal open={open} onClose={handleClose} className="modalSolicitarRegear">
                     <Modal.Header className="modalRegearHeader">

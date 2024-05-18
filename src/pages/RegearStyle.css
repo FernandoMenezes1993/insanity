@@ -152,3 +152,12 @@
             color: rgb(126, 106, 106);
             transform: scale(1.05); 
         }
+.telaCarregamento{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.651);
+    width: 100%;
+    height: 100%;
+}

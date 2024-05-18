@@ -10,10 +10,13 @@ function Tabela({ solicitações, token }) {
         window.open(url, '_blank');
     };
 
+    //Colocando as novas solicitações em cima
+    const solicitaçõesRevertidas = [...solicitações].reverse();
+
     // Cálculo de páginas
     const indexOfLastItem = paginaAtual * itensPorPagina;
     const indexOfFirstItem = indexOfLastItem - itensPorPagina;
-    const solicitaçõesAtuais = solicitações.slice(indexOfFirstItem, indexOfLastItem);
+    const solicitaçõesAtuais = solicitaçõesRevertidas.slice(indexOfFirstItem, indexOfLastItem);
 
     const totalPaginas = Math.ceil(solicitações.length / itensPorPagina);
 

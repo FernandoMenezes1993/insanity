@@ -212,6 +212,7 @@ const Pedido =  () =>{
                         </div>
                         <div className="finalizarRegear">
                             <button className="btnFinalizar" onClick={finalizarRegearPronto}>Finalizar</button>
+                            <Button onClick={recusarRegear} appearance="primary" className="btnFinalizar">Recusar</Button>
                         </div>
                     </div>
                     {/*Div some quando o cargo for diferente de Staff*/}
