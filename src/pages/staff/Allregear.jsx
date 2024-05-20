@@ -35,7 +35,7 @@ const Allregear = () =>{
     const [detaRegear, setDetaRegear] = useState([]);
     const getAllRegear = async()=>{
         try {
-            const res = await fetch(`${BackURL}/api/get/all/regear`);
+            const res = await fetch(`${BackURL}/api/get/all/regear/staff`);
             if(!res.ok){
                 throw new Error('Erro na consulta da API getAllRegear');
             }

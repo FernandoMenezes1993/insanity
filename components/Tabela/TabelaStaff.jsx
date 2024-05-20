@@ -36,7 +36,6 @@ function TabelaStaff( { regears, token }) {
                 </thead>
                 <tbody>
                 {solicitaçõesAtuais
-                        .filter(regear => regear.Status !== "Negado" && regear.Status !== "Finalizado")
                         .map(regear => (
                             <tr key={regear._id}>
                                 <td className="idTabela"><strong>{regear.Data}</strong></td>
