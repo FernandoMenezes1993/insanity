@@ -1,12 +1,13 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState, useEffect  } from 'react';
 
-import { Modal, Button } from 'rsuite';
+import { Modal, Button, Loader } from 'rsuite';
 import "./PedidoStyle.css"
 import 'rsuite/dist/rsuite-no-reset.min.css';
 
 
 const Pedido =  () =>{
+    const[loading, setLoading] = useState(false);
     /*MODAL Recusado*/
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -53,6 +54,10 @@ const Pedido =  () =>{
             }
             const data = await res.json();
             setDetaRegear(data);
+            setLoading(true);
+            setTimeout(()=>{
+                setLoading(false);
+            }, 3000);
            
         } catch (error) {
             
@@ -196,6 +201,7 @@ const Pedido =  () =>{
                 </div>
             </div>
             <div className="dadosPedidos">
+
                 <div className="divDados">
                     <p><strong>Solicitante:</strong> {detaRegear.Name}</p>
                     <p><strong>Data solicitada:</strong> {detaRegear.Data}</p>                
@@ -205,24 +211,29 @@ const Pedido =  () =>{
                     <p><strong>ID do re-gear:</strong> {detaRegear._id}</p>
                     <p><strong>Link da morte:</strong> <a href={`${detaRegear.Link}`} target="_blank">Acessar</a></p>
                 </div>
-                <div className={`${dataToken.Cargo}`}>
-                    <div className={`staff-${detaRegear.Status}-Dinamico`}>
-                        <div className="contentStaff">
-                            <p>Em qual baú o Re-gear está:</p> <input type="text" className="inputBau" value={bauRegear} onChange={e => setBauRegear(e.target.value)}/>
+                {loading ? (
+                        <Loader size="lg" center content="Carregando..." />
+                ):(
+                    <div className={`${dataToken.Cargo}`}>
+
+                        <div className={`staff-${detaRegear.Status}-Dinamico`}>
+                            <div className="contentStaff">
+                                <p>Em qual baú o Re-gear está:</p> <input type="text" className="inputBau" value={bauRegear} onChange={e => setBauRegear(e.target.value)}/>
+                            </div>
+                            <div className="finalizarRegear">
+                                <button className="btnFinalizar" onClick={finalizarRegearPronto}>Finalizar</button>
+                                <button className="btnFinalizar" onClick={handleOpen}>Recusar</button>
+                            </div>
                         </div>
-                        <div className="finalizarRegear">
-                            <button className="btnFinalizar" onClick={finalizarRegearPronto}>Finalizar</button>
-                            <button className="btnFinalizar" onClick={handleOpen}>Recusar</button>
+                        {/*Div some quando o cargo for diferente de Staff*/}
+                        <div className={`staff-${detaRegear.Status}`}>
+                            {/*Pedido pendente*/}
+                            {/*Div some quando o status for diferente de Pendente*/}
+                            <button className="btnAceitarRegear" onClick={aceitarRegear}>Aceitar</button>
+                            <button className="btnRecusarRegear" onClick={handleOpen}>Recusar</button>
                         </div>
                     </div>
-                    {/*Div some quando o cargo for diferente de Staff*/}
-                    <div className={`staff-${detaRegear.Status}`}>
-                        {/*Pedido pendente*/}
-                        {/*Div some quando o status for diferente de Pendente*/}
-                        <button className="btnAceitarRegear" onClick={aceitarRegear}>Aceitar</button>
-                        <button className="btnRecusarRegear" onClick={handleOpen}>Recusar</button>
-                    </div>
-                </div>
+                )}
             </div>
 
 
