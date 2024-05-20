@@ -32,6 +32,7 @@ const Pedido =  () =>{
     const [dataToken, setDataToken] = useState('');
 
     const verificarToken = async()=>{
+        setLoading(true);
         try {
             const res = await fetch(`${BackURL}/api/checks/${token}`);
             if(!res.ok){
@@ -54,7 +55,7 @@ const Pedido =  () =>{
             }
             const data = await res.json();
             setDetaRegear(data);
-            setLoading(true);
+            
             setTimeout(()=>{
                 setLoading(false);
             }, 3000);
