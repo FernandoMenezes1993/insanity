@@ -76,7 +76,7 @@ const Login =  () =>{
     return(
         <div className="Login">
             {loading ? (
-                <Loader size="lg" speed="fast" center content="Carregando..." style={{color: "with"}}/>
+                <Loader size="lg" speed="fast" center content={<span style={{ color: 'white' }}>Carregando...</span>}  style={{color: "with"}}/>
             ):(
                 <div className='Fomrs'>
                     <p className='Titulo'>Insanity BR</p>                

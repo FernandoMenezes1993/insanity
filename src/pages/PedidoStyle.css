@@ -67,6 +67,30 @@
         .Bolsa{
             left: 13%;
         }
+    .buid img {
+        cursor: pointer;
+        border-radius: 8px;
+    }
+    .cabecaOff{
+        filter: brightness(0.3);
+        border: none;
+    }
+    .peitoOff{
+        filter: brightness(0.3);
+        border: none;
+    }
+    .botaOff{
+        filter: brightness(0.3);
+        border: none;
+    }
+    .mainHandOff{
+        filter: brightness(0.3);
+        border: none;
+    }
+    .offHandOff{
+        filter: brightness(0.3);
+        border: none;
+    }
            
             
 .dadosPedidos{
@@ -100,7 +124,7 @@
 
 /* AREA DO REGEAR ONDE A STAFA FAZ AS MOVIMENTAÇÕES*/
 .Staff{
-    width: 72%;
+    width: 70%;
     display: flex;
     justify-content: center;
     align-items: center;

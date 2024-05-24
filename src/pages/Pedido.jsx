@@ -173,25 +173,68 @@ const Pedido =  () =>{
             console.error(error)
         }
     }
+
+    //Ajuste nas imagens quando clicar
+    const [statusCabeca, setStatusCabeca] = useState("cabecaOff")
+    const [statusPeito, setStatusPeito] = useState("peitoOff")
+    const [statusBota, setStatusBota] = useState("botaOff")
+    const [statusMainHand, setStatusMainHand] = useState("mainHandOff")
+    const [statusOffHand, setStatusOffHand] = useState("offHandOff")
+
+    const clicoNaCabeca = ()=>{
+        if(statusCabeca == 'cabecaOff'){
+            setStatusCabeca("cabecaOn")
+        }else{
+            setStatusCabeca("cabecaOff")
+        }
+    }
+    const clicoNoPeito = ()=>{
+        if(statusPeito == 'peitoOff'){
+            setStatusPeito("peitoOn")
+        }else{
+            setStatusPeito("peitoOff")
+        }
+    }
+    const clicoNaBota = ()=>{
+        if(statusBota == 'botaOff'){
+            setStatusBota("botaOn")
+        }else{
+            setStatusBota("botaOff")
+        }
+    }
+    const clicoNoMainHand = ()=>{
+        if(statusMainHand == 'mainHandOff'){
+            setStatusMainHand("mainHandOn")
+        }else{
+            setStatusMainHand("mainHandOff")
+        }
+    }
+    const clicoNoOffHand = ()=>{
+        if(statusOffHand == 'offHandOff'){
+            setStatusOffHand("offHandOn")
+        }else{
+            setStatusOffHand("offHandOff")
+        }
+    }
     
     return(
         <div className="pgPedido">
             <div className="infogerais">
                 <div className="buid">
                     <div className="cabeca">
-                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.Cabeca}`} alt="" />
+                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.Cabeca}`} alt="" className={`${statusCabeca}`} onClick={clicoNaCabeca}/>
                     </div>
                     <div className="peitoral">
-                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.Peitoral}`} alt="" />
+                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.Peitoral}`} alt="" className={`${statusPeito}`} onClick={clicoNoPeito}/>
                     </div>
                     <div className="Bota">
-                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.Bota}`} alt="" />
+                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.Bota}`} alt="" className={`${statusBota}`} onClick={clicoNaBota}/>
                     </div>
                     <div className="MainHand">
-                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.MainHand}`} alt="" />
+                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.MainHand}`} alt="" className={`${statusMainHand}`} onClick={clicoNoMainHand}/>
                     </div>
                     <div className="OffHand">
-                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.OffHand}`} alt="" />
+                        <img src={`https://render.albiononline.com/v1/item/${detaRegear.OffHand}`} alt="" className={`${statusOffHand}`} onClick={clicoNoOffHand}/>
                     </div>
                     <div className="Capa">
                         <img src={`https://render.albiononline.com/v1/item/${detaRegear.Capa}`} alt="" />
@@ -213,7 +256,9 @@ const Pedido =  () =>{
                     <p><strong>Link da morte:</strong> <a href={`${detaRegear.Link}`} target="_blank">Acessar</a></p>
                 </div>
                 {loading ? (
-                        <Loader size="lg" center content="Carregando..." />
+                    <div className="divLoading">
+                        <Loader size="lg" center content={<span style={{ color: 'white' }}>Carregando...</span>} />
+                    </div>
                 ):(
                     <div className={`${dataToken.Cargo}`}>
 
