@@ -71,23 +71,23 @@
         cursor: pointer;
         border-radius: 8px;
     }
-    .cabecaOff{
+    .cabecaOn{
         filter: brightness(0.3);
         border: none;
     }
-    .peitoOff{
+    .peitoOn{
         filter: brightness(0.3);
         border: none;
     }
-    .botaOff{
+    .botaOn{
         filter: brightness(0.3);
         border: none;
     }
-    .mainHandOff{
+    .mainHandOn{
         filter: brightness(0.3);
         border: none;
     }
-    .offHandOff{
+    .offHandOn{
         filter: brightness(0.3);
         border: none;
     }
