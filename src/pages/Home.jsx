@@ -20,6 +20,7 @@ const Home = () =>{
             }
             const data = await res.json();
             setPlayer(data);
+            console.log(data)
             if(data.res == 502){
                 navigate(`/`);
             }
@@ -33,8 +34,14 @@ const Home = () =>{
     return(
         <div className="containerHome">
             <CustomSidenav token={token}  cargo={player.Cargo}/>
-            <div className="conteudoHome">
-                <h1 className="titulo">{player.User}</h1>
+            <div className="conteudoHome">                
+                <div className="tituloJogador">
+                    <h1 className="titulo">{player.User}</h1>
+                    <p className="nomeGuilda">[NAARC] INSANITY BR</p>
+                </div>
+                <div className="contetJogador">
+
+                </div>
             </div>
             
         </div> 

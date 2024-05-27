@@ -11,14 +11,12 @@ const Pedido =  () =>{
     /*MODAL Recusado*/
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
-        setMsgStaffTitulo("Qual o motivo da recusa?")
         setOpen(true);
     }
     const handleClose = () => {
         setOpen(false);
     }
 
-    const [msgStaffTitulo, setMsgStaffTitulo] = useState("");
     const [msgStaff, setMsgStaff] = useState('')
     const [bauRegear, setBauRegear] = useState('')
 
@@ -262,6 +260,7 @@ const Pedido =  () =>{
                 ):(
                     <div className={`${dataToken.Cargo}`}>
 
+                        {/*Div que mostra para staff quando o pedido for aceito*/}
                         <div className={`staff-${detaRegear.Status}-Dinamico`}>
                             <div className="contentStaff">
                                 <p>Em qual baú o Re-gear está:</p> <input type="text" className="inputBau" value={bauRegear} onChange={e => setBauRegear(e.target.value)}/>
@@ -271,21 +270,29 @@ const Pedido =  () =>{
                                 <button className="btnFinalizar" onClick={handleOpen}>Recusar</button>
                             </div>
                         </div>
-                        {/*Div some quando o cargo for diferente de Staff*/}
-                        <div className={`staff-${detaRegear.Status}`}>
-                            {/*Pedido pendente*/}
-                            {/*Div some quando o status for diferente de Pendente*/}
+
+                        {/*Div aparece para Staff quando a pedido estiver pendente*/}
+                        <div className={`staff-${detaRegear.Status}`}>                                                        
                             <button className="btnAceitarRegear" onClick={aceitarRegear}>Aceitar</button>
                             <button className="btnRecusarRegear" onClick={handleOpen}>Recusar</button>
                         </div>
+
+                        {/*Div para os membros*/}
+                        <div className={`dados-${dataToken.Cargo}`}>
+                            <div style={{display: "flex", justifyContent: "center"}}>
+                                <h3>Re-gear será disponibilizado na ilha <strong>Insanity Refining CO</strong> </h3>
+                            </div>
+                            <p>Seu Re-gear esta no Bau: {detaRegear.MsgStaff}</p>
+                        </div>
                     </div>
+
                 )}
             </div>
 
 
             <Modal open={open} onClose={handleClose} size="xs">
                 <Modal.Header>
-                    <Modal.Title>{`${msgStaffTitulo}`}</Modal.Title>
+                    <Modal.Title></Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="modalBody">
                     <textarea className="msgStaff" type="text" placeholder="Deixe sua mensagem aqui..." value={msgStaff} onChange={e => setMsgStaff(e.target.value)} rows={6}/>
