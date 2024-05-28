@@ -247,19 +247,6 @@
     .staff-Finalizado-Dinamico{
         display: none;
     }
-
-.dados-Membro{
-    width: 170%;
-    height: 98%;
-    border: solid 2px black;
-    border-radius: 10px;
-    margin-left: 8px;
-    padding-left: 10px;
-}
-.dados-Staff{
-    display: none;
-}
-
 .msgStaff{
     width: 90%;
 }
