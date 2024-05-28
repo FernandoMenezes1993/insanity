@@ -31,6 +31,9 @@ const Home = () =>{
     useEffect(()=>{
         verificarToken()
     }, []);
+
+    const cargo = "Membro"
+    const nome = "nando"
     return(
         <div className="containerHome">
             <CustomSidenav token={token}  cargo={player.Cargo}/>

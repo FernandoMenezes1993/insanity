@@ -69,8 +69,7 @@ const Pedido =  () =>{
 
     const atualizarPagina = ()=>{
         window.location.reload();
-    }
-    
+    }    
     const aceitarRegear = async()=>{
         const now = new Date();
         const day = now.getDate();
@@ -153,7 +152,8 @@ const Pedido =  () =>{
             Responsavel:  dataToken.User,
             Status: "Finalizado",
             DataFinalizado: DataFinalizado, 
-            MsgStaff: bauRegear,
+            bauRegear: bauRegear,
+            MsgStaff: msgStaff
         }
         try {
             const response = await fetch(`${BackURL}/api/regear/finalizar/${detaRegear._id}`, {
@@ -215,6 +215,8 @@ const Pedido =  () =>{
         }
     }
     
+    const checkOfficePlayer = dataToken.Cargo
+    const checkStatusRegear = detaRegear.Status
     return(
         <div className="pgPedido">
             <div className="infogerais">
@@ -249,54 +251,156 @@ const Pedido =  () =>{
                     <p><strong>Data solicitada:</strong> {detaRegear.Data}</p>                
                     <p><strong>Classe da buid:</strong> {detaRegear.Class}</p>
                     <p><strong>Status da solicitação:</strong> <span className={`span-${detaRegear.Status}`}>{detaRegear.Status}</span></p>
-                    <p><strong>Responsavel:</strong> {detaRegear.Responsavel}</p>
+                    <p><strong>Responsavel:</strong> <strong>{detaRegear.Responsavel}</strong></p>
                     <p><strong>ID do re-gear:</strong> {detaRegear._id}</p>
                     <p><strong>Link da morte:</strong> <a href={`${detaRegear.Link}`} target="_blank">Acessar</a></p>
                 </div>
+
                 {loading ? (
                     <div className="divLoading">
                         <Loader size="lg" center content={<span style={{ color: 'white' }}>Carregando...</span>} />
                     </div>
                 ):(
-                    <div className={`${dataToken.Cargo}`}>
-
-                        {/*Div que mostra para staff quando o pedido for aceito*/}
-                        <div className={`staff-${detaRegear.Status}-Dinamico`}>
-                            <div className="contentStaff">
-                                <p>Em qual baú o Re-gear está:</p> <input type="text" className="inputBau" value={bauRegear} onChange={e => setBauRegear(e.target.value)}/>
+                    <div className="Staff">
+                        {checkOfficePlayer === "Staff" && checkStatusRegear === "Pendente" &&(
+                            <div className="staff-Pendente">                                                        
+                                <button className="btnAceitarRegear" onClick={aceitarRegear}>Aceitar</button>
+                                <button className="btnRecusarRegear" onClick={handleOpen}>Recusar</button>
                             </div>
-                            <div className="finalizarRegear">
-                                <button className="btnFinalizar" onClick={finalizarRegearPronto}>Finalizar</button>
-                                <button className="btnFinalizar" onClick={handleOpen}>Recusar</button>
+                        )}
+
+                        {checkOfficePlayer === "Staff" && checkStatusRegear === "Aceito" &&(
+                            <div className="staff-Aceito">
+                                <div className="contentStaff">
+                                    <div className="bauRegear">
+                                        <p><b>Em qual baú o Re-gear está:</b></p> 
+                                        <input 
+                                        type="number" 
+                                        className="inputBau" 
+                                        value={bauRegear} 
+                                        onChange={e => 
+                                        setBauRegear(e.target.value)}/>
+                                    </div>
+                                    <div className="msgStaffDiv">
+                                     <p><b>Deixe uma mensagem aqui:</b></p> 
+                                     <textarea
+                                     className="msgFinalizaRegear"
+                                     type="text" 
+                                     placeholder="Deixe sua mensagem aqui..." 
+                                     value={msgStaff} onChange={e => 
+                                     setMsgStaff(e.target.value)} rows={6}
+                                     />
+                                    </div>
+                                </div>
+                                <div className="finalizarRegear">
+                                    <button className="btnFinalizar" onClick={finalizarRegearPronto}>Finalizar</button>
+                                    <button className="btnRecusar" onClick={handleOpen}>Recusar</button>
+                                </div>
                             </div>
-                        </div>
+                        )}
 
-                        {/*Div aparece para Staff quando a pedido estiver pendente*/}
-                        <div className={`staff-${detaRegear.Status}`}>                                                        
-                            <button className="btnAceitarRegear" onClick={aceitarRegear}>Aceitar</button>
-                            <button className="btnRecusarRegear" onClick={handleOpen}>Recusar</button>
-                        </div>
+                        {checkOfficePlayer === "Staff" && checkStatusRegear === "Negado" &&(
+                            <div className="staff-Negado">
+                                <div className="tituloRegearNegado">
+                                    <h1>Re-gear Negado!</h1>
+                                </div>
+                                <div className="motivoRegearNegado">
+                                    <p><b>MOTIVO</b></p>
+                                    <div className="motivoNegado">
+                                        <p>Finalizado dia {detaRegear.DataFinalizado}</p>
+                                        <p>Motivo: {detaRegear.MsgStaff}</p>
+                                    </div>
+                                </div>
+                                    
+                            </div>
+                        )}
 
-                        {/*Div para os membros*/}
-                        
+                        {checkOfficePlayer === "Membro" && checkStatusRegear === "Negado" &&(
+                            <div className="staff-Negado">
+                                <div className="tituloRegearNegado">
+                                    <h1>Re-gear Negado!</h1>
+                                </div>
+                                <div className="motivoRegearNegado">
+                                    <p><b>MOTIVO</b></p>
+                                    <div className="motivoNegado">
+                                        <p>Finalizado dia {detaRegear.DataFinalizado}</p>
+                                        <p>Motivo: {detaRegear.MsgStaff}</p>
+                                    </div>
+                                </div>
+                                    
+                            </div>
+                        )}
+
+                        {checkOfficePlayer === "Staff" && checkStatusRegear === "Finalizado" &&(
+                            <div className="staff-Negado">
+                                <div className="tituloRegearNegado">
+                                    <h1>Re-gear Finalizado!</h1>
+                                </div>
+                                <div className="motivoRegearNegado">
+                                    <div className="motivoFinalizado">
+                                        <p><strong> Retirar o seu Re-gear na <spam>Ilha Insanity Refining CO</spam>.</strong></p>
+                                        <p>Finalizado dia {detaRegear.DataFinalizado}.</p>
+                                        <p>Re-gear disponibilizado no baú {detaRegear.bauRegear}.</p>
+
+                                        {detaRegear.MsgStaff === "Null" ? (
+                                            <p>{detaRegear.Responsavel} não deixou mensagem.</p>
+                                        ) : (
+                                            <p>Mensagem de {detaRegear.Responsavel}: {detaRegear.MsgStaff}</p>
+                                        )}
+                                    </div>
+                                </div>
+                                    
+                            </div>
+                        )}
+
+                        {checkOfficePlayer === "Membro" && checkStatusRegear === "Finalizado" &&(
+                            <div className="staff-Negado">
+                                <div className="tituloRegearNegado">
+                                    <h1>Re-gear Finalizado!</h1>
+                                </div>
+                                <div className="motivoRegearNegado">
+                                    <div className="motivoFinalizado">
+                                        <p><strong> Retirar o seu Re-gear na <spam>Ilha Insanity Refining CO</spam>.</strong></p>
+                                        <p>Finalizado dia {detaRegear.DataFinalizado}.</p>
+                                        <p>Re-gear disponibilizado no baú {detaRegear.bauRegear}.</p>
+
+                                        {detaRegear.MsgStaff === "Null" ? (
+                                            <p>{detaRegear.Responsavel} não deixou mensagem.</p>
+                                        ) : (
+                                            <p>Mensagem de {detaRegear.Responsavel}: {detaRegear.MsgStaff}</p>
+                                        )}
+                                    </div>
+                                </div>
+                                    
+                            </div>
+                        )}
                     </div>
-
                 )}
             </div>
 
 
             <Modal open={open} onClose={handleClose} size="xs">
                 <Modal.Header>
-                    <Modal.Title></Modal.Title>
+                    <Modal.Title>Qual o motivo para recusar o Re-gear</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="modalBody">
-                    <textarea className="msgStaff" type="text" placeholder="Deixe sua mensagem aqui..." value={msgStaff} onChange={e => setMsgStaff(e.target.value)} rows={6}/>
+                    <textarea 
+                    className="msgStaff" 
+                    type="text" 
+                    placeholder="Deixe sua mensagem aqui..." 
+                    value={msgStaff} onChange={e => 
+                    setMsgStaff(e.target.value)} rows={6}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={recusarRegear} appearance="primary">
+                    <Button 
+                    onClick={recusarRegear} 
+                    appearance="primary">
                         Recusar
                     </Button>
-                    <Button onClick={handleClose} appearance="subtle">
+
+                    <Button 
+                    onClick={handleClose} 
+                    appearance="subtle">
                         Cancelar
                     </Button>
                 </Modal.Footer>
