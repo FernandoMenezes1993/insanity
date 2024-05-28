@@ -123,6 +123,9 @@
 
 
 /* AREA DO REGEAR ONDE A STAFA FAZ AS MOVIMENTAÇÕES*/
+.Membro{
+    display: none;
+}
 .Staff{
     width: 70%;
     display: flex;
