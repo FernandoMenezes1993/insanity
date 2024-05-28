@@ -278,12 +278,7 @@ const Pedido =  () =>{
                         </div>
 
                         {/*Div para os membros*/}
-                        <div className={`dados-${dataToken.Cargo}`}>
-                            <div style={{display: "flex", justifyContent: "center"}}>
-                                <h3>Re-gear será disponibilizado na ilha <strong>Insanity Refining CO</strong> </h3>
-                            </div>
-                            <p>Seu Re-gear esta no Bau: {detaRegear.MsgStaff}</p>
-                        </div>
+                        
                     </div>
 
                 )}
